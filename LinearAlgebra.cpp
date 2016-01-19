@@ -45,6 +45,13 @@ namespace LinAlg {
 		reset();
 		rows = row;
 		cols = col;
+		a = new double*[cols];
+		for (int i = 0; i < cols; i++)
+		{
+			a[i] = new double[rows];
+			for (int j = 0; j < rows; j++)
+				a[i][j] = 0;
+		}
 
 	}
 
@@ -91,12 +98,20 @@ namespace LinAlg {
 		if (*this == other)
 			return *this;
 		else {
-			this->reset();
-			this->rows = other.rows;
-			this->cols = other.cols;
-			for (int i = 0; i < cols; i++)
-				for (int j = 0; j < rows; j++)
-					this->a[i][j] = other.a[i][j];
+//			this->reset();
+//			std::cout << "okay \n";
+//			this->rows = other.rows;
+//			std::cout << "okay \n";
+//			this->cols = other.cols;
+//			std::cout << "okay \n";
+			this->setDimensions(other.rows, other.cols);
+			for (int i = 0; i < rows; i++)
+				for (int j = 0; j < cols; j++)
+				{
+					this->a[j][i] = other.a[j][i];
+					std::cout << "okay \n";
+				}
+			std::cout << "okay \n";
 			return *this;
 		}
 		
