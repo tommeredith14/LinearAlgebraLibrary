@@ -129,7 +129,7 @@ namespace LinAlg {
 					this->a[j][i] = other.a[j][i];
 					std::cout << "okay \n";
 				}
-			std::cout << "okay \n";
+	
 			return *this;
 		}
 		
@@ -162,6 +162,31 @@ namespace LinAlg {
 		}
 
 	}
+	const Matrix Matrix::operator*(const Matrix & other) const
+	{
+		if (cols == other.rows) {
+			Matrix product(rows, other.cols);
+			for (int i = 0; i < product.rows; i++) {
+				for (int j = 0; j < product.cols; j++) {
+					double value = 0;
+					for (int index = 0; index < (*this).cols; index++)
+						value += a[index][i] * other.a[j][index];
+					product.a[j][i] = value;
+				}
+			}
+			return product;
+		}
+		
+		
+	}
+	const Matrix Matrix::operator*(double scalar) const
+	{
+		Matrix scMult(rows, cols);
+		for (int i = 0; i < rows; i++)
+			for (int j = 0; j < cols; j++)
+				scMult.a[j][i] = scalar * a[j][i];
+		return scMult;
+	}
 	bool Matrix::operator==(Matrix const & other)const
 	{
 		if (rows != other.rows || cols != other.cols)
@@ -171,5 +196,9 @@ namespace LinAlg {
 				if (a[i][j] != other.a[i][j])
 					return false;
 		return true;
+	}
+	const Matrix operator*(double scalar, Matrix const & matrixToMultiply)
+	{
+		return matrixToMultiply * scalar;
 	}
 }
