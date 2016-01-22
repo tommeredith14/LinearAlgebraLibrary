@@ -1,2 +1,4 @@
 ﻿  LinearAlgebra.cpp
+c:\users\tom\documents\visual studio 2015\projects\linearalgebra\linearalgebralibrary\linearalgebra.cpp(164): warning C4715: 'LinAlg::Matrix::operator-': not all control paths return a value
+c:\users\tom\documents\visual studio 2015\projects\linearalgebra\linearalgebralibrary\linearalgebra.cpp(150): warning C4715: 'LinAlg::Matrix::operator+': not all control paths return a value
   LinearAlgebraLibrary.vcxproj -> c:\users\tom\documents\visual studio 2015\Projects\LinearAlgebra\Debug\LinearAlgebraLibrary.lib

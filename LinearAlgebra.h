@@ -17,6 +17,7 @@ namespace LinAlg {
 	public:
 		Matrix();
 		Matrix(int row, int col);
+		Matrix(const Matrix & other);
 		~Matrix();
 		void setDimensions(int row, int col);
 		void setElement(int row, int col, double val);
@@ -24,12 +25,16 @@ namespace LinAlg {
 		bool readIn(std::istream & in);
 		void output(std::ostream & out);
 		
+		
 		int getColumns()const;
 		int getRows() const;
-		
+	
 		bool operator==(Matrix const & other)const;
 		Matrix& operator=(const Matrix & other);
-
+		const Matrix operator + (const Matrix & other) const;
+		const Matrix operator - (const Matrix & other) const;
+		//scalar *
+		//+, -
 	};
 
 }

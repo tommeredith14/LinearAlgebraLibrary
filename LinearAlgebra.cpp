@@ -35,6 +35,24 @@ namespace LinAlg {
 		}
 	}
 
+	Matrix::Matrix(const Matrix & other)
+	{
+		rows = other.rows;
+		cols = other.cols;
+		a = new double*[cols];
+		for (int i = 0; i < cols; i++)
+		{
+			a[i] = new double[rows];
+			for (int j = 0; j < rows; j++)
+				a[i][j] = 0;
+		}
+		cout << "copying";
+		for (int i = 0; i < rows; i++)
+			for (int j = 0; j < cols; j++)
+				a[j][i] = other.a[j][i];
+		cout << "copied";
+	}
+
 	Matrix:: ~Matrix() {
 		reset();
 		a = NULL;
@@ -86,6 +104,7 @@ namespace LinAlg {
 		}
 		
 	}
+
 	
 	int Matrix::getColumns()const {
 		return cols;
@@ -93,17 +112,16 @@ namespace LinAlg {
 	int Matrix::getRows() const {
 		return rows;
 	}
+	
 	Matrix & Matrix::operator=(const Matrix & other)
 	{
+		cout << other.getColumns();
+
 		if (*this == other)
 			return *this;
 		else {
-//			this->reset();
-//			std::cout << "okay \n";
-//			this->rows = other.rows;
-//			std::cout << "okay \n";
-//			this->cols = other.cols;
-//			std::cout << "okay \n";
+
+			
 			this->setDimensions(other.rows, other.cols);
 			for (int i = 0; i < rows; i++)
 				for (int j = 0; j < cols; j++)
@@ -115,6 +133,34 @@ namespace LinAlg {
 			return *this;
 		}
 		
+	}
+	const Matrix Matrix::operator+(const Matrix & other) const
+	{
+		if (rows == other.rows && cols == other.cols) {
+			Matrix sum(rows, cols);
+			
+			for (int i = 0; i < rows; i++)
+				for (int j = 0; j < cols; j++)
+					sum.a[j][i] = a[j][i] + other.a[j][i];
+			cout << "added successfully\n";
+			
+			return sum;
+		}
+		
+	}
+	const Matrix Matrix::operator-(const Matrix & other) const
+	{
+		if (rows == other.rows && cols == other.cols) {
+			Matrix difference(rows, cols);
+
+			for (int i = 0; i < rows; i++)
+				for (int j = 0; j < cols; j++)
+					difference.a[j][i] = a[j][i] - other.a[j][i];
+			cout << "added successfully\n";
+
+			return difference;
+		}
+
 	}
 	bool Matrix::operator==(Matrix const & other)const
 	{
