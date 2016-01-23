@@ -36,6 +36,7 @@ namespace LinAlg {
 		const Matrix operator * (const Matrix & other) const;
 		const Matrix operator * (double scalar) const;
 		const friend Matrix operator * (double scalar, Matrix const & matrixToMultiply);
+		int deteminant()const;
 
 		//scalar *
 		//+, -

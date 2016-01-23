@@ -187,6 +187,39 @@ namespace LinAlg {
 				scMult.a[j][i] = scalar * a[j][i];
 		return scMult;
 	}
+	int Matrix::deteminant() const
+	{
+		if (rows == cols && rows > 0) {
+			if (rows == 1)
+				return a[0][0];
+			if (rows == 2)
+				return (a[0][0] * a[1][1] - a[0][1] * a[1][0]);
+			double det = 0;
+			for (int colNum = 0; colNum < cols; colNum++) {
+				//Make resultant matrix
+				Matrix cofactor(rows - 1, cols - 1);
+				for (int cofCol = 0, originalCol = 0; cofCol < cofactor.rows; cofCol++, originalCol++) {
+					if (originalCol == colNum)
+						originalCol++;
+
+					for (int row = 0; row < cofactor.rows; row++)
+						cofactor.a[cofCol][row] = this->a[originalCol][row + 1];
+				}
+				//cofactor.output(cout);
+				det += pow(-1, colNum) * a[colNum][0] * cofactor.deteminant();
+				//cout<< det << endl;
+
+
+			}
+			return det;
+
+
+
+		}
+		
+		
+		return 0;
+	}
 	bool Matrix::operator==(Matrix const & other)const
 	{
 		if (rows != other.rows || cols != other.cols)
