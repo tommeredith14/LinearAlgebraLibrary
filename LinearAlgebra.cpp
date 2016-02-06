@@ -234,4 +234,40 @@ namespace LinAlg {
 	{
 		return matrixToMultiply * scalar;
 	}
+
+
+	void Vector::reset() {
+		delete val;
+		val = NULL;
+	}
+	Vector::Vector() {
+		dimension = 0;
+	}
+	Vector::Vector(int dim) {
+		dimension = dim;
+		val = new double[dim];
+		for (int i = 0; i < dim; i++)
+		{
+			val[i] = dim;
+		}
+	}
+	Vector:: ~Vector() {
+		delete val;
+		val = NULL;
+	}
+	void Vector:: setDimension(int newDim) {
+		reset();
+		dimension = newDim;
+		val = new double[newDim];
+		for (int i = 0; i < newDim; i++) {
+			val[i] = 0;
+		}
+	}
+
+
+
+
+
+
+
 }

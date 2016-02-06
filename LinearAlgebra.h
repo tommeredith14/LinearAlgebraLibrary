@@ -42,6 +42,25 @@ namespace LinAlg {
 		//+, -
 	};
 
+
+	class Vector {
+		int dimension;
+		double * val;
+		void reset();
+
+	public:
+		Vector();
+		Vector(int dim);
+		~Vector();
+		void setDimension(int newDim);
+
+		
+
+
+	};
+
+
+
 }
 
 #endif
