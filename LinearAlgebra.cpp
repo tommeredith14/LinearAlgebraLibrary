@@ -187,7 +187,7 @@ namespace LinAlg {
 				scMult.a[j][i] = scalar * a[j][i];
 		return scMult;
 	}
-	int Matrix::deteminant() const
+	double Matrix::determinant() const
 	{
 		if (rows == cols && rows > 0) {
 			if (rows == 1)
@@ -206,7 +206,7 @@ namespace LinAlg {
 						cofactor.a[cofCol][row] = this->a[originalCol][row + 1];
 				}
 				//cofactor.output(cout);
-				det += pow(-1, colNum) * a[colNum][0] * cofactor.deteminant();
+				det += pow(-1, colNum) * a[colNum][0] * cofactor.determinant();
 				//cout<< det << endl;
 
 
@@ -261,6 +261,36 @@ namespace LinAlg {
 		val = new double[newDim];
 		for (int i = 0; i < newDim; i++) {
 			val[i] = 0;
+		}
+	}
+
+	Vector::Vector(const Vector & rs)
+	{
+		dimension = rs.dimension;
+		val = new double[dimension];
+		for (int i = 0; i < dimension; i++) {
+			val[i] = rs.val[i];
+		}
+
+	}
+
+	Vector * Vector::operator=(const Vector & other)
+	{
+		//cout << other.getColumns();
+
+		if (false);//*this == other)
+		//	return *this;
+		else {
+
+
+			this->setDimension(other.dimension);
+			for (int i = 0; i < dimension; i++)
+			{
+					this->val[i] = other.val[i];
+					std::cout << "okay \n";
+			}
+
+			return this;
 		}
 	}
 

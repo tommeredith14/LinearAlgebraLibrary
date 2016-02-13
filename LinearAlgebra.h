@@ -36,7 +36,7 @@ namespace LinAlg {
 		const Matrix operator * (const Matrix & other) const;
 		const Matrix operator * (double scalar) const;
 		const friend Matrix operator * (double scalar, Matrix const & matrixToMultiply);
-		int deteminant()const;
+		double determinant()const;
 
 		//scalar *
 		//+, -
@@ -53,6 +53,10 @@ namespace LinAlg {
 		Vector(int dim);
 		~Vector();
 		void setDimension(int newDim);
+		Vector(const Vector & rs);
+		Vector* operator=(const Vector & other);
+
+
 
 		
 
